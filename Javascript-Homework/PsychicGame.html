@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>The Cyber Psychic</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+		<script src="text/javascript"></script>
+
+	<div id="game">
+
+		<h1>Guess A Letter...</h1>
+
+		<p>Guess What The Letter I'm Thinking of!</p>
+
+		<p>Your Epic Wins:</p>
+
+		<p>Your Agonizing Losses:</p>
+
+		<p>Guesses Left:</p>
+
+		<p>Your Guesses So Far:</p>
+
+	</div>
+		
+		<var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+
+		 var wins = 0;
+		 var losses = 0;
+		 var numGuesses = 9;
+		 var guessChoices = [];
+
+		 document.onkeyup = function() {
+            var userGuess = String.fromCharCode(event.keyCode).
+                toLowerCase();
+
+		 	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+		 	var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
+		 	
+	
+			if (options.indexOf(userGuess) > -1) {
+
+				if (userGuess=== computerGuess) {
+					wins++;
+					numGuesses = 9;
+					guessChoices = [];
+				}
+
+				if (userGuess != computerGuess) {
+					numGuesses --;
+					guessChoices.push(userGuess);
+				}
+
+				if (numGuesses === 0) {
+
+				numGuesses = 9;
+				losses ++;
+				guessChoices = [];
+                
+
+				
+			}
+
+			var html = 
+			"<h1> Cyber Psychic: The Psychic Game </h1>" +
+			"<p>Guess What The Letter I'm Thinking of!</p>" +
+			"<p>Your Epic Wins: " + wins + "</p>" +
+			"<p>Your Agonizing Losses: " + losses + "</p>" +
+			"<p>Guesses Left: " + numGuesses + "</p>" +
+			"<p>Your Guesses So Far: " + guessChoices.join(", ") + "</p>";
+
+			document.querySelector("#game").innerHTML = html;
+
+			
+			}
+		};
+
+	</script>
+
+</body>
+</html>
